@@ -5,6 +5,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -41,20 +42,19 @@ public class Producer01 {
         } catch (TimeoutException e) {
             e.printStackTrace();
         }finally {
-
             try {
-                channel.close();
+                if(Objects.nonNull(channel)) {
+                    channel.close();
+                }
+                if(Objects.nonNull(connection)) {
+                    connection.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (TimeoutException e) {
                 e.printStackTrace();
             }
 
-            try {
-                connection.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
     }

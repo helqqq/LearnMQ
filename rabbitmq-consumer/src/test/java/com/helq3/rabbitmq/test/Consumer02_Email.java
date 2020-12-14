@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
  * @Author Helena
  * @Date 2020/12/11 11:58
  */
-public class Consumer02 {
+public class Consumer02_Email {
 
     private static final String QUEUE_INFORM_EMAIL = "queue_inform_email";
 
@@ -62,7 +62,7 @@ public class Consumer02 {
             };
             //监听队列
             //String queue, boolean autoAck, Consumer callback
-//            channel.basicConsume(QUEUE,true,defaultConsumer);
+            channel.basicConsume(QUEUE_INFORM_EMAIL,true,defaultConsumer);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {

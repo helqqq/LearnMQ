@@ -6,6 +6,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -71,7 +72,7 @@ public class Producer02 {
 
             //发送消息
             for(int i = 0; i < 5; i++){
-                String message = "hello world";
+                String message = "send msg to helena";
                 channel.basicPublish(EXCHANGE_FANOUT_INFORM,"",null, message.getBytes());
                 System.out.println("send msg to mq:" + message);
             }
@@ -80,18 +81,17 @@ public class Producer02 {
         } catch (TimeoutException e) {
             e.printStackTrace();
         }finally {
-
             try {
-                channel.close();
+                if(Objects.nonNull(channel)) {
+                    channel.close();
+                }
+                if(Objects.nonNull(connection)) {
+                    connection.close();
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (TimeoutException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                connection.close();
-            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
