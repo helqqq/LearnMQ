@@ -1,15 +1,13 @@
 package com.helq3.rabbitmq.test;
 
-import com.alibaba.fastjson.JSON;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.concurrent.TimeoutException;
 
 /**
  * @ClassName Consumer03_routing
- * @Description TODO
+ * @Description 消费者-路由模式
  * @Author Helena
  * @Date 2020/12/14 19:56
  */
